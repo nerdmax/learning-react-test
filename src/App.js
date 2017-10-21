@@ -74,14 +74,23 @@ class App extends Component {
     // )
 
     // Import
-    getFakeMembersFromUtil(5).then(
-      (members) => {
-        console.log(members);
-      },
-      (err) => {
-        console.error(err);
-      }
-    )
+    // getFakeMembersFromUtil(5).then(
+    //   (members) => {
+    //     console.log(members);
+    //   },
+    //   (err) => {
+    //     console.error(err);
+    //   }
+    // )
+
+    // Function as argument
+    const argumentFun = (fn, mess) => {
+      fn(mess);
+    };
+
+    argumentFun(message => {
+      console.log(message);
+    }, "This is the message that sent to the fn");
 
     return (
       // <div className="App">
