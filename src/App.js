@@ -84,13 +84,23 @@ class App extends Component {
     // )
 
     // Function as argument
-    const argumentFun = (fn, mess) => {
-      fn(mess);
-    };
+    // const argumentFun = (fn, mess) => {
+    //   fn(mess);
+    // };
+    // argumentFun(message => {
+    //   console.log(message);
+    // }, "This is the message that sent to the fn");
 
-    argumentFun(message => {
+    // Function as returned value
+    const createScream = logger => {
+      return message => {
+        logger(message.toUpperCase() + "!!!!");
+      };
+    };
+    const scream = createScream(message => {
       console.log(message);
-    }, "This is the message that sent to the fn");
+    });
+    scream("test function");
 
     return (
       // <div className="App">
