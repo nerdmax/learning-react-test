@@ -92,15 +92,43 @@ class App extends Component {
     // }, "This is the message that sent to the fn");
 
     // Function as returned value
-    const createScream = logger => {
-      return message => {
-        logger(message.toUpperCase() + "!!!!");
+    // const createScream = logger => {
+    //   return message => {
+    //     logger(message.toUpperCase() + "!!!!");
+    //   };
+    // };
+    // const scream = createScream(message => {
+    //   console.log(message);
+    // });
+    // scream("test function");
+
+    // Functional Concepts: Immutability(Object)
+    const color_lawn = {
+      title: "lawn",
+      color: "#fff",
+      rating: 0,
+    };
+    const rateColor = (color, rating) => {
+      return {
+        ...color,
+        rating,
       };
     };
-    const scream = createScream(message => {
-      console.log(message);
-    });
-    scream("test function");
+    const new_color_lawn = rateColor(color_lawn, 12);
+    console.log(color_lawn.rating);
+    console.log(new_color_lawn.rating);
+    // Functional Concepts: Immutability(Array)
+    const list = [
+      { title: "title1" },
+      { title: "title2" },
+      { title: "title3" },
+    ];
+    const addColor = (colors, title) => {
+      return [...colors, { title }];
+    };
+    const newList = addColor(list, "title4");
+    console.log(list);
+    console.log(newList);
 
     return (
       // <div className="App">
