@@ -103,32 +103,96 @@ class App extends Component {
     // scream("test function");
 
     // Functional Concepts: Immutability(Object)
-    const color_lawn = {
-      title: "lawn",
-      color: "#fff",
-      rating: 0,
-    };
-    const rateColor = (color, rating) => {
-      return {
-        ...color,
-        rating,
-      };
-    };
-    const new_color_lawn = rateColor(color_lawn, 12);
-    console.log(color_lawn.rating);
-    console.log(new_color_lawn.rating);
-    // Functional Concepts: Immutability(Array)
-    const list = [
-      { title: "title1" },
-      { title: "title2" },
-      { title: "title3" },
+    // const color_lawn = {
+    //   title: "lawn",
+    //   color: "#fff",
+    //   rating: 0,
+    // };
+    // const rateColor = (color, rating) => {
+    //   return {
+    //     ...color,
+    //     rating,
+    //   };
+    // };
+    // const new_color_lawn = rateColor(color_lawn, 12);
+    // console.log(color_lawn.rating);
+    // console.log(new_color_lawn.rating);
+    // // Functional Concepts: Immutability(Array)
+    // const list = [
+    //   { title: "title1" },
+    //   { title: "title2" },
+    //   { title: "title3" },
+    // ];
+    // const addColor = (colors, title) => {
+    //   return [...colors, { title }];
+    // };
+    // const newList = addColor(list, "title4");
+    // console.log(list);
+    // console.log(newList);
+
+    // Functional Concepts: Pure functions
+
+    // Functional Concepts: Data Transformations
+    // .join();
+    const schools = ["Yourktown", "Washington & Lee", "Wakefield"];
+    console.log(schools.join(","));
+    // .filter();
+    const wSchools = schools.filter(school => {
+      return school[0] === "W";
+    });
+    console.log(wSchools);
+    // .map();
+    const highSchools = schools.map(school => {
+      return `${school} is a high school`;
+    });
+    console.log(highSchools);
+    // .map() with objects as items in Array
+    const schoolsWithObject = [
+      { name: "Yourktown" },
+      { name: "Stratford" },
+      { name: "Washington & Lee" },
+      { name: "Wakefield" },
     ];
-    const addColor = (colors, title) => {
-      return [...colors, { title }];
+    const editName = (oldName, name, arr) => {
+      return arr.map(item => {
+        return item.name === oldName ? { ...item, name } : item;
+      });
     };
-    const newList = addColor(list, "title4");
-    console.log(list);
-    console.log(newList);
+    console.log(editName("Yourktown", "Changed School", schoolsWithObject));
+    // .map() to hash
+    const hashTestValues = [
+      { id: "-xekare", title: "rad red", rating: 3 },
+      { id: "-sdfdsd", title: "rad blue", rating: 4 },
+      { id: "-sdfsdf", title: "rad black", rating: 5 },
+    ];
+    const transformedHashTestValues = hashTestValues.map(testValue => {
+      return {
+        [testValue.id]: { title: testValue.title, rating: testValue.rating },
+      };
+    });
+    console.log("transformedHashTestValues", transformedHashTestValues);
+    // Object.keys(...)
+    const schoolsObject = {
+      Yorktown: 10,
+      "Washington & Lee": 2,
+      Wakefield: 5,
+    };
+    const schoolArray = Object.keys(schoolsObject).map(key => {
+      return { name: key, id: schoolsObject[key] };
+    });
+    console.log("schoolArray", schoolArray);
+    // Array.reduce
+    const ages = [21, 18, 42, 40, 64, 63, 34];
+    const maxAge = ages.reduce((largerAge, age) => {
+      return largerAge > age ? largerAge : age;
+    }, 0);
+    console.log("maxAge", maxAge);
+    // Array.reduce get distinct value
+    const colors = ["red", "red", "green", "blue", "green"];
+    const distinctColors = colors.reduce((distinct, color) => {
+      return distinct.indexOf(color) !== -1 ? distinct : [...distinct, color];
+    }, []);
+    console.log("distinctColors", distinctColors);
 
     return (
       // <div className="App">
