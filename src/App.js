@@ -133,97 +133,107 @@ class App extends Component {
     // Functional Concepts: Pure functions
 
     // Functional Concepts: Data Transformations
-    // .join();
-    const schools = ["Yourktown", "Washington & Lee", "Wakefield"];
-    console.log(schools.join(","));
-    // .filter();
-    const wSchools = schools.filter(school => {
-      return school[0] === "W";
-    });
-    console.log(wSchools);
-    // .map();
-    const highSchools = schools.map(school => {
-      return `${school} is a high school`;
-    });
-    console.log(highSchools);
-    // .map() with objects as items in Array
-    const schoolsWithObject = [
-      {
-        name: "Yourktown"
-      },
-      {
-        name: "Stratford"
-      },
-      {
-        name: "Washington & Lee"
-      },
-      {
-        name: "Wakefield"
-      }
-    ];
-    const editName = (oldName, name, arr) => {
-      return arr.map(item => {
-        return item.name === oldName
-          ? {
-              ...item,
-              name
-            }
-          : item;
-      });
-    };
-    console.log(editName("Yourktown", "Changed School", schoolsWithObject));
-    // .map() to hash
-    const hashTestValues = [
-      {
-        id: "-xekare",
-        title: "rad red",
-        rating: 3
-      },
-      {
-        id: "-sdfdsd",
-        title: "rad blue",
-        rating: 4
-      },
-      {
-        id: "-sdfsdf",
-        title: "rad black",
-        rating: 5
-      }
-    ];
-    const transformedHashTestValues = hashTestValues.map(testValue => {
-      return {
-        [testValue.id]: {
-          title: testValue.title,
-          rating: testValue.rating
-        }
+    // // .join();
+    // const schools = ["Yourktown", "Washington & Lee", "Wakefield"];
+    // console.log(schools.join(","));
+    // // .filter();
+    // const wSchools = schools.filter(school => {
+    //   return school[0] === "W";
+    // });
+    // console.log(wSchools);
+    // // .map();
+    // const highSchools = schools.map(school => {
+    //   return `${school} is a high school`;
+    // });
+    // console.log(highSchools);
+    // // .map() with objects as items in Array
+    // const schoolsWithObject = [
+    //   {
+    //     name: "Yourktown"
+    //   },
+    //   {
+    //     name: "Stratford"
+    //   },
+    //   {
+    //     name: "Washington & Lee"
+    //   },
+    //   {
+    //     name: "Wakefield"
+    //   }
+    // ];
+    // const editName = (oldName, name, arr) => {
+    //   return arr.map(item => {
+    //     return item.name === oldName
+    //       ? {
+    //           ...item,
+    //           name
+    //         }
+    //       : item;
+    //   });
+    // };
+    // console.log(editName("Yourktown", "Changed School", schoolsWithObject));
+    // // .map() to hash
+    // const hashTestValues = [
+    //   {
+    //     id: "-xekare",
+    //     title: "rad red",
+    //     rating: 3
+    //   },
+    //   {
+    //     id: "-sdfdsd",
+    //     title: "rad blue",
+    //     rating: 4
+    //   },
+    //   {
+    //     id: "-sdfsdf",
+    //     title: "rad black",
+    //     rating: 5
+    //   }
+    // ];
+    // const transformedHashTestValues = hashTestValues.map(testValue => {
+    //   return {
+    //     [testValue.id]: {
+    //       title: testValue.title,
+    //       rating: testValue.rating
+    //     }
+    //   };
+    // });
+    // console.log("transformedHashTestValues", transformedHashTestValues);
+    // // Object.keys(...)
+    // const schoolsObject = {
+    //   Yorktown: 10,
+    //   "Washington & Lee": 2,
+    //   Wakefield: 5
+    // };
+    // const schoolArray = Object.keys(schoolsObject).map(key => {
+    //   return {
+    //     name: key,
+    //     id: schoolsObject[key]
+    //   };
+    // });
+    // console.log("schoolArray", schoolArray);
+    // // Array.reduce
+    // const ages = [21, 18, 42, 40, 64, 63, 34];
+    // const maxAge = ages.reduce((largerAge, age) => {
+    //   return largerAge > age ? largerAge : age;
+    // }, 0);
+    // console.log("maxAge", maxAge);
+    // // Array.reduce get distinct value
+    // const colors = ["red", "red", "green", "blue", "green"];
+    // const distinctColors = colors.reduce((distinct, color) => {
+    //   return distinct.indexOf(color) !== -1 ? distinct : [...distinct, color];
+    // }, []);
+    // console.log("distinctColors", distinctColors);
+
+    // Functional Concepts: Higher-Order Functions
+    const userLogs = userName => {
+      return message => {
+        console.log(`${userName} -> ${message}`);
       };
-    });
-    console.log("transformedHashTestValues", transformedHashTestValues);
-    // Object.keys(...)
-    const schoolsObject = {
-      Yorktown: 10,
-      "Washington & Lee": 2,
-      Wakefield: 5
     };
-    const schoolArray = Object.keys(schoolsObject).map(key => {
-      return {
-        name: key,
-        id: schoolsObject[key]
-      };
-    });
-    console.log("schoolArray", schoolArray);
-    // Array.reduce
-    const ages = [21, 18, 42, 40, 64, 63, 34];
-    const maxAge = ages.reduce((largerAge, age) => {
-      return largerAge > age ? largerAge : age;
-    }, 0);
-    console.log("maxAge", maxAge);
-    // Array.reduce get distinct value
-    const colors = ["red", "red", "green", "blue", "green"];
-    const distinctColors = colors.reduce((distinct, color) => {
-      return distinct.indexOf(color) !== -1 ? distinct : [...distinct, color];
-    }, []);
-    console.log("distinctColors", distinctColors);
+    const log = userLogs('grandpa23');
+    log('We are going to get 23 grandpas');
+    log('Another log');
 
     return (
       // <div className="App">
