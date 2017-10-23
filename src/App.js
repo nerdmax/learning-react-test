@@ -226,14 +226,40 @@ class App extends Component {
     // console.log("distinctColors", distinctColors);
 
     // Functional Concepts: Higher-Order Functions
-    const userLogs = userName => {
-      return message => {
-        console.log(`${userName} -> ${message}`);
-      };
+    // const userLogs = userName => {
+    //   return message => {
+    //     console.log(`${userName} -> ${message}`);
+    //   };
+    // };
+    // const log = userLogs('grandpa23');
+    // log('We are going to get 23 grandpas');
+    // log('Another log');
+
+    // Functional Concepts: Recursion
+    const dan = {
+      type: "person",
+      data: {
+        gender: "male",
+        info: {
+          id: 22,
+          fullname: {
+            first: "Dan",
+            last: "Deacon"
+          }
+        }
+      }
     };
-    const log = userLogs('grandpa23');
-    log('We are going to get 23 grandpas');
-    log('Another log');
+    const deepPick = (fields, object = {}) => {
+      const [first, ...remaining] = fields.split(".");
+      return remaining.length !== 0
+        ? deepPick(remaining.join("."), object[first])
+        : object[first];
+    };
+    console.log("type", deepPick("type", dan));
+    console.log(
+      "data.info.fullname.first",
+      deepPick("data.info.fullname.first", dan)
+    );
 
     return (
       // <div className="App">
