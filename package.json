@@ -16,6 +16,9 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "stylelint-config-standard": "^17.0.0"
+    "eslint-config-defaults": "^9.0.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-defaults"
   }
 }
