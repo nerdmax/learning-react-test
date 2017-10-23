@@ -148,26 +148,54 @@ class App extends Component {
     console.log(highSchools);
     // .map() with objects as items in Array
     const schoolsWithObject = [
-      { name: "Yourktown" },
-      { name: "Stratford" },
-      { name: "Washington & Lee" },
-      { name: "Wakefield" },
+      {
+        name: "Yourktown"
+      },
+      {
+        name: "Stratford"
+      },
+      {
+        name: "Washington & Lee"
+      },
+      {
+        name: "Wakefield"
+      }
     ];
     const editName = (oldName, name, arr) => {
       return arr.map(item => {
-        return item.name === oldName ? { ...item, name } : item;
+        return item.name === oldName
+          ? {
+              ...item,
+              name
+            }
+          : item;
       });
     };
     console.log(editName("Yourktown", "Changed School", schoolsWithObject));
     // .map() to hash
     const hashTestValues = [
-      { id: "-xekare", title: "rad red", rating: 3 },
-      { id: "-sdfdsd", title: "rad blue", rating: 4 },
-      { id: "-sdfsdf", title: "rad black", rating: 5 },
+      {
+        id: "-xekare",
+        title: "rad red",
+        rating: 3
+      },
+      {
+        id: "-sdfdsd",
+        title: "rad blue",
+        rating: 4
+      },
+      {
+        id: "-sdfsdf",
+        title: "rad black",
+        rating: 5
+      }
     ];
     const transformedHashTestValues = hashTestValues.map(testValue => {
       return {
-        [testValue.id]: { title: testValue.title, rating: testValue.rating },
+        [testValue.id]: {
+          title: testValue.title,
+          rating: testValue.rating
+        }
       };
     });
     console.log("transformedHashTestValues", transformedHashTestValues);
@@ -175,10 +203,13 @@ class App extends Component {
     const schoolsObject = {
       Yorktown: 10,
       "Washington & Lee": 2,
-      Wakefield: 5,
+      Wakefield: 5
     };
     const schoolArray = Object.keys(schoolsObject).map(key => {
-      return { name: key, id: schoolsObject[key] };
+      return {
+        name: key,
+        id: schoolsObject[key]
+      };
     });
     console.log("schoolArray", schoolArray);
     // Array.reduce
