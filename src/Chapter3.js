@@ -256,14 +256,95 @@ export const Chapter3 = () => {
   // );
 
   // Functional Concepts: Composition
-  // cosnt compose = (...fns) => {
-  //   (arg) => {
-  //     fns.reduce(
-  //       (compose, f) => f(compose),
-  //       arg
-  //     )
-  //   }
-  // }
+  const compose = (...fns) => {
+    // console.log(fns);
+    return arg => {
+      return fns.reduce((composed, f) => f(composed), arg);
+    };
+  };
 
-  
+  // Functional Concepts: Putting It All Together
+  const oneSecond = () => {
+    // console.log("oneSecond");
+    return 1000;
+  };
+  const getCurrentTime = () => {
+    return new Date();
+  };
+  const clear = () => {
+    // console.log("clear");
+    return console.clear();
+  };
+  const log = message => {
+    return console.log(message);
+  };
+  const serializeClockTime = date => {
+    return {
+      hours: date.getHours(),
+      minutes: date.getMinutes(),
+      seconds: date.getSeconds()
+    };
+  };
+  const civilianHours = clockTime => {
+    return {
+      ...clockTime,
+      hours: clockTime.hours > 12 ? clockTime.hours - 12 : clockTime.hours
+    };
+  };
+  const appendAMPM = clockTime => {
+    return {
+      ...clockTime,
+      ampm: clockTime.hours >= 12 ? "PM" : "AM"
+    };
+  };
+  const display = target => {
+    return time => {
+      return target(time);
+    };
+  };
+  const formatClock = format => {
+    return time => {
+      return format
+        .replace("hh", time.hours)
+        .replace("mm", time.minutes)
+        .replace("ss", time.seconds)
+        .replace("tt", time.ampm);
+    };
+  };
+  const prependZero = key => {
+    return clockTime => {
+      return {
+        ...clockTime,
+        [key]: clockTime[key] < 10 ? "0" + clockTime[key] : clockTime[key]
+      };
+    };
+  };
+  const convertToCivilianTime = clockTIme => {
+    return compose(appendAMPM, civilianHours)(clockTIme);
+  };
+  const doubleDigits = civilianTime => {
+    return compose(
+      prependZero("hours"),
+      prependZero("minutes"),
+      prependZero("seconds")
+    )(civilianTime);
+  };
+  const startTicking = () => {
+    setInterval(
+      compose(
+        clear,
+        getCurrentTime,
+        serializeClockTime,
+        convertToCivilianTime,
+        doubleDigits,
+        formatClock("hh:mm:ss tt"),
+        display(log)
+      ),
+      oneSecond()
+    );
+  };
+  // console.log("getCurrentTime",getCurrentTime());
+  // console.log("serializeClockTime", serializeClockTime(getCurrentTime()));
+  // console.log("convertToCivilianTime", convertToCivilianTime(serializeClockTime(getCurrentTime())));
+  // startTicking();
 };
