@@ -6,14 +6,16 @@ import "./App.css";
 import { test } from "./test";
 import { Chapter3 } from "./Chapter3";
 import { Chapter5Recipe } from "./Chapter5";
-import { Chapter6Form } from './Chapter6';
+import { Chapter6Form } from "./Chapter6";
+import { Chapter6State } from "./Chapter6";
 
 class App extends Component {
   render() {
     // test();
     // Chapter3();
     // Chapter5Recipe();
-    Chapter6Form();
+    // Chapter6Form();
+    Chapter6State();
     return (
       // <div className="App">
       //   <header className="App-header">
